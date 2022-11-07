@@ -31,6 +31,14 @@ float3 DecodeAxisVector(float3 rgb)
     return r.xyz;
 }
 
+float3 DecodeAxisVectorLocal(float3 rgb)
+{
+    rgb = (rgb-0.5)*2;
+    rgb = rgb.xzy*float3(-1,1,1);
+    return rgb.xyz;
+    
+}
+
 float Decode8BitAlphaAxisExtent(float a)
 {
     return max(8, a*2048)*_MetricScale;
