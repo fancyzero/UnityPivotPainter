@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tree Branch
+  m_Shader: {fileID: 4800000, guid: dfc8982535a71c746b5d9ab21d0488a1, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHAPREMULTIPLY_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 89e3039f30880534e926e892bc8b1f1e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: f2c91fe27bdf1f34d8727132793f9088, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SkinTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WindTex:
+        m_Texture: {fileID: 2800000, guid: 0824654fcdd23f54196afd52c15dcd5a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _posAndIndexTex:
+        m_Texture: {fileID: 2800000, guid: d68f6772f36655841adf858de835320a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _xVectorAndExtentTex:
+        m_Texture: {fileID: 2800000, guid: 36e530cef93fb4a4ca93c9d80f067807, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BumpScale: 1
+    - _CutOut: 0.036
+    - _Cutoff: 0.5
+    - _Debug: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 10
+    - _GlossMapScale: 1
+    - _Glossiness: 0
+    - _GlossyReflections: 1
+    - _GustWindScale: 0
+    - _GustWindspeed: 0
+    - _Level1_CamDistanceStrengthRange: 50
+    - _Level1_CamDistanceStrengthWeight: 0.093
+    - _Level1_LocalWindScale: 1
+    - _Level1_MotionDampingFalloffRadius: 6.3
+    - _Level1_ParentRotationInfluence: 0
+    - _Level1_RandomRotationInfluence: 1
+    - _Level1_RandomRotationTextureSampleScale: 10
+    - _Level1_WindGustAngleRotation: 0.12
+    - _Level1_WindGustOffset: -0.018349
+    - _Level1_WindGustWorldScale: 1
+    - _Level1_WindHorizontalSpeed: 0.436
+    - _Level1_WindSpeed: -0.668
+    - _Level2_Affected_ByParentRotation: 0
+    - _Level2_CamDistanceStrengthRange: 50
+    - _Level2_CamDistanceStrengthWeight: 0
+    - _Level2_LocalWindScale: 0
+    - _Level2_MotionDampingFalloffRadius: 2
+    - _Level2_ParentRotationInfluence: 0
+    - _Level2_RandomRotationInfluence: 0.5
+    - _Level2_RandomRotationTextureSampleScale: 10
+    - _Level2_WindGustAngleRotation: 0.6
+    - _Level2_WindGustOffset: 0
+    - _Level2_WindGustWorldScale: 100
+    - _Level2_WindHorizontalSpeed: 0.25
+    - _Level2_WindSpeed: 1
+    - _Level3_Affected_ByParentRotation: 0
+    - _Level3_CamDistanceStrengthRange: 50
+    - _Level3_CamDistanceStrengthWeight: 0
+    - _Level3_LocalWindScale: 1
+    - _Level3_MotionDampingFalloffRadius: 1.7
+    - _Level3_ParentRotationInfluence: 0
+    - _Level3_RandomRotationInfluence: 1
+    - _Level3_RandomRotationTextureSampleScale: 3
+    - _Level3_WindGustAngleRotation: 1.68
+    - _Level3_WindGustOffset: 0.1
+    - _Level4_Affected_ByParentRotation: 0
+    - _Level4_CamDistanceStrengthRange: 50
+    - _Level4_CamDistanceStrengthWeight: 0
+    - _Level4_LocalWindScale: 1
+    - _Level4_MotionDampingFalloffRadius: 0.01
+    - _Level4_ParentRotationInfluence: 0
+    - _Level4_RandomRotationInfluence: 9.36
+    - _Level4_RandomRotationTextureSampleScale: 0.2
+    - _Level4_WindGustAngleRotation: 3.48
+    - _Level4_WindGustOffset: 0
+    - _Metallic: 0
+    - _MetricScale: 0.01
+    - _Mode: 3
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _RotateUV: 0
+    - _ShowDebug: 6.75
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _UseGravity: 0.5
+    - _WindEffect: 0
+    - _WindGustWorldScale: 0.014
+    - _WindHorizontalSpeed: 0.1
+    - _WindSpeed: 0.1
+    - _ZWrite: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Level1_WindDirectionX: {r: 1, g: 0, b: 0, a: 0}
+    - _Level1_WindDirectionY: {r: 0, g: 0, b: 1, a: 0}
+    - _Level1_WindShelterSettings: {r: -1.25, g: -0.4444, b: 0, a: 0}
+    - _Level2_WindDirectionX: {r: 1, g: 0, b: 0, a: 0}
+    - _Level2_WindDirectionY: {r: 0, g: 0, b: 1, a: 0}
+    - _Level2_WindShelterSettings: {r: -1.25, g: -0.4444, b: 0, a: 0}
+    - _Level3_WindShelterSettings: {r: -1.25, g: -0.4444, b: 0, a: 0}
+    - _Level4_WindShelterSettings: {r: -1.25, g: -0.4444, b: 0, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _WindDirectionX: {r: 1, g: 0, b: 0, a: 0}
+    - _WindDirectionY: {r: 0, g: 0, b: 1, a: 0}
+  m_BuildTextureStacks: []
