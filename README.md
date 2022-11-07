@@ -2,13 +2,13 @@
 
 Unity Implementation of UE PivotPainter
 
--Rebuild hierarchy from textures
+* Rebuild hierarchy from textures
 
--Foliage animation
+* Foliage animation
 
--Hair animation
+* Hair animation
 
--Debugger tools
+* Debugger tools
 
 ![](https://github.com/fancyzero/UnityPivotPainter/blob/main/Images/Demo.gif)
 
