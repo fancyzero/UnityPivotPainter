@@ -130,14 +130,14 @@ Material:
     - _WindHorizontalSpeed: 0.179
     - _WindSpeed: 0.123
     m_Colors:
-    - _Color: {r: 0.34118018, g: 0.38679248, b: 0.36931634, a: 1}
+    - _Color: {r: 0.16691881, g: 0.22114336, b: 0.2924528, a: 1}
     - _ColorDim: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _EmissionColor: {r: 2.6390157, g: 2.08112, b: 0.8428269, a: 1}
-    - _EmissionColorNear: {r: 2, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 3.1240594, g: 0, b: 4.229443, a: 1}
+    - _EmissionColorNear: {r: 0.14438362, g: 3.9882724, b: 5.5154557, a: 1}
     - _FlatRimColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _Level1_WindShelterSettings: {r: 1, g: -0.4, b: 0, a: 0}

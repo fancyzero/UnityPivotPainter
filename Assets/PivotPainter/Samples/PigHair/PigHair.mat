@@ -76,7 +76,7 @@ Material:
     - _GustWindspeed: 0.3
     - _HeightTransition: 0
     - _Level1_LocalWindScale: 1
-    - _Level1_MotionDampingFalloffRadius: 0.5
+    - _Level1_MotionDampingFalloffRadius: 1.5
     - _Level1_ParentRotationInfluence: 0
     - _Level1_RandomRotationInfluence: 4.94
     - _Level1_RandomRotationTextureSampleScale: 0.8
