@@ -2,8 +2,10 @@
     Properties {
 
         _MetricScale("metric scale",float)=0.01
+        _LookAt("lookat", Vector)=(0,0,0,0)
         _Color ("Color", Color) = (1,1,1,1)
         [HDR]_EmissionColor ("Color", Color) = (1,1,1,1)
+        [HDR]_EmissionColorNear ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _NormalMap("Normal Map", 2D) = "bump"{}		
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
@@ -79,6 +81,7 @@
         cull off
         CGINCLUDE
         float4 _EmissionColor;
+        float4 _EmissionColorNear;
         float _MetricScale;
         float _Debug;
         float _ShowDebug;
@@ -136,7 +139,7 @@
         float _Level4_CamDistanceStrengthWeight;
         float _Level4_CamDistanceStrengthRange;	
 
-
+        float3 _LookAt;
         sampler2D _WindTex;
 
         
@@ -154,6 +157,7 @@
         sampler2D _NormalMap;
         struct Input {
             float l;
+            float distToAttr;
         };
 
         half _Glossiness;
@@ -165,7 +169,7 @@
             // Albedo comes from a texture tinted by color
             
             o.Albedo = _Color;
-            o.Emission = (IN.l-1)*_EmissionColor;
+            o.Emission = (IN.l-1)*lerp(_EmissionColorNear , _EmissionColor, IN.distToAttr);
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
@@ -237,45 +241,49 @@
 
         void PovitPainter2FoliageAnimation( in PPFAParams params, out PPFAOutput output)
         {
-            output = (PPFAOutput)0;
-            float3 worldPivotPos = params.worldPivotPos;
-            float3 worldPos = params.worldPos;
-            float3 xAxis = params.xAxisAndExtent.xyz;//float3(0,1,0);
-            float xExtent = params.xAxisAndExtent.a;
+			output = (PPFAOutput)0;
+			float3 worldPivotPos = params.worldPivotPos;
+			float3 worldPos = params.worldPos;
+			float3 xAxis = params.xAxisAndExtent.xyz;//float3(0,1,0);
+			float xExtent = params.xAxisAndExtent.a;
 
-            float3 tipOffset = xAxis * xExtent;
-            float3 worldTipPos = worldPivotPos+tipOffset;
-            half3  dpos = _WorldSpaceCameraPos - worldPos;
-            float CamDistance = length(dpos);
+			float3 tipOffset = xAxis * xExtent;
+			float3 worldTipPos = worldPivotPos+tipOffset;
+			half3  dpos = _WorldSpaceCameraPos - worldPos;
+			float CamDistance = length(dpos);
 
-            float directionalWindMask = (dot(xAxis, params.windDirectionX)+params.windShelterSettings.x)*params.windShelterSettings.y;
+			float directionalWindMask = (dot(xAxis, params.windDirectionX)+params.windShelterSettings.x)*params.windShelterSettings.y;
 
 
-            //ambient wind
-            //transform world tip pos using wind x, y axises as biases
-            float2 worldTipToWind = float2(dot(params.windDirectionX,worldTipPos),dot(params.windDirectionY,worldTipPos));
-            float2 windUV = float2(params.windSpeed * params.localWindScale, params.windHorizontalSpeed)*params.time + worldTipToWind/params.windGustWorldScale;
-            
-            float gustStrength = SampleMip0(_WindTex, frac(windUV)).a;
-            //angle rotation
-            float3 randomAngleRotationAxis = (SampleMip0( _WindTex,  windUV/params.randomRotationTextureSampleScale)-0.5)*params.randomRotationInfluence;
-            float3 angleRotationAxis = cross( xAxis , params.windDirectionX );//todo: need to protet cross from returning 0
-            angleRotationAxis = normalize(randomAngleRotationAxis + angleRotationAxis);
-            float3 windTurbur;
-            float angleOffsetAndMagnitute = params.windGustAngleRotation*(params.windGustOffset+gustStrength);
-            //angleOffsetAndMagnitute = (1-smoothstep(params.CamDistanceStrengthRange, 0.0, CamDistance) * params.CamDistanceStrengthWeight) * angleOffsetAndMagnitute;
-            output.rotationAngleAnimation = directionalWindMask * (0 + angleOffsetAndMagnitute);
-            
+			//ambient wind
+			//transform world tip pos using wind x, y axises as biases
+			float2 worldTipToWind = float2(dot(params.windDirectionX,worldTipPos),dot(params.windDirectionY,worldTipPos));
+			float2 windUV = float2(params.windSpeed * params.localWindScale, params.windHorizontalSpeed)*params.time + worldTipToWind/params.windGustWorldScale;
+			
+			float gustStrength = SampleMip0(_WindTex, frac(windUV)).a;
+			//angle rotation
+			float3 randomAngleRotationAxis = (SampleMip0( _WindTex,  windUV/params.randomRotationTextureSampleScale)-0.5)*params.randomRotationInfluence;
+			float3 angleRotationAxis = cross( xAxis , params.windDirectionX );//todo: need to protet cross from returning 0
+			angleRotationAxis = normalize(randomAngleRotationAxis + angleRotationAxis);
+            float distantceToattr = length( _LookAt - worldPivotPos );
+            float3 attractorAngleRotationAxis = normalize(cross(normalize( _LookAt - worldPivotPos )*float3(1,0,1), float3(0,1,0)));
+            angleRotationAxis =  lerp(  attractorAngleRotationAxis, angleRotationAxis,saturate(distantceToattr/40));
+            params.windGustAngleRotation = lerp(7,params.windGustAngleRotation,saturate(distantceToattr/40));
+			float3 windTurbur;
+			float angleOffsetAndMagnitute = params.windGustAngleRotation*(params.windGustOffset+gustStrength);
+			//angleOffsetAndMagnitute = (1-smoothstep(params.CamDistanceStrengthRange, 0.0, CamDistance) * params.CamDistanceStrengthWeight) * angleOffsetAndMagnitute;
+			output.rotationAngleAnimation = directionalWindMask * (0 + angleOffsetAndMagnitute);
+			
 
-            float motionMask = saturate(dot((worldPos - worldPivotPos), xAxis)/(params.motionDampingFalloffRadius*1.52));
+			float motionMask = saturate(dot((worldPos - worldPivotPos), xAxis)/(params.motionDampingFalloffRadius*1.52));
 
-            float3 rotOffset = RotateAboutAxis(float4(angleRotationAxis,motionMask* output.rotationAngleAnimation), worldPivotPos, worldPos );
-            
-            output.worldPosOffset = rotOffset ;
-            output.pivotPos = worldPivotPos;
-            output.debug.xyz = xAxis;
-            output.debug.w = xExtent;
-            output.rotAxis =float4(angleRotationAxis, motionMask*output.rotationAngleAnimation);
+			float3 rotOffset = RotateAboutAxis(float4(angleRotationAxis,motionMask* output.rotationAngleAnimation), worldPivotPos, worldPos );
+			
+			output.worldPosOffset = rotOffset ;
+			output.pivotPos = worldPivotPos;
+			output.debug.xyz = xAxis;
+			output.debug.w = xExtent;
+			output.rotAxis =float4(angleRotationAxis, motionMask*output.rotationAngleAnimation);
 
         }
 
@@ -313,25 +321,31 @@
             float3 instanceWorldPos = mul(unity_ObjectToWorld, float4(0,0,0,1)).xyz;//the 4th row
             
             float extentScale = 1.;
+            SurfaceInput.l = 1;
             
+            float3 PivotPos = ConvertCoord(SamplePivotAndIndex(hierachy.pivotUVs[pivotIndices[hierachy.level][0]]).xyz);
+            float3 worldPivotPos = mul(unity_ObjectToWorld, float4((ConvertCoord(SamplePivotAndIndex(hierachy.pivotUVs[pivotIndices[hierachy.level][0]]).xyz)),1));
+            float distantceToattr = saturate(length( _LookAt - worldPivotPos )/40);
+            distantceToattr=distantceToattr*distantceToattr*distantceToattr*distantceToattr;
+            SurfaceInput.distToAttr = distantceToattr;
             {
                 
                 float3 Pos = v.vertex;
-                float3 PivotPos = ConvertCoord(SamplePivotAndIndex(hierachy.pivotUVs[pivotIndices[hierachy.level][0]]).xyz);
+                
                 
 
                 float4 vande = SampleXVectorAndExtent(hierachy.extentUVs[pivotIndices[hierachy.level].x]);
                 float3 xAxis = DecodeAxisVectorLocal(vande.rgb);				
                 float xExtent = Decode8BitAlphaAxisExtent(vande.a);		
                 float l = dot((Pos - PivotPos), xAxis);
-                extentScale = gold_noise(PivotPos.xz,339)*0.5+0.5;
+                extentScale = gold_noise(PivotPos.xz+instanceWorldPos.xz,339)*0.5+0.5;
                 v.vertex.xyz += xAxis * extentScale*l;
                 Pos = v.vertex;
                 float3 ringCenter = xAxis*l + PivotPos;
-                float t = _Time.y*(0.25+gold_noise(PivotPos.xz, 13.3)*.2)+gold_noise(PivotPos.xz, 0.3);
-                float x = l/(4+gold_noise(PivotPos.xz,20)*2);
+                float t = _Time.y*(0.25+gold_noise(PivotPos.xz+instanceWorldPos.xz, 13.3)*.2)+gold_noise(PivotPos.xz+instanceWorldPos.xz, 0.3);
+                float x = l/(4+gold_noise(PivotPos.xz+instanceWorldPos.xz,20)*2);
                 float s = smoothstep(0.1,0.,abs(frac(x-t)-0.5))+1;
-                
+                s = lerp(s,1,distantceToattr);
                 v.vertex.xyz = (Pos - ringCenter)*s+ringCenter;
 
                 SurfaceInput.l = s;

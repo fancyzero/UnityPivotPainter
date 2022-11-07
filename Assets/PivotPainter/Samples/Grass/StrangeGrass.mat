@@ -75,7 +75,7 @@ Material:
     - _GustWindScale: 1
     - _GustWindspeed: 0.393
     - _HeightTransition: 0
-    - _Level1_LocalWindScale: -1
+    - _Level1_LocalWindScale: 1
     - _Level1_MotionDampingFalloffRadius: 2.8
     - _Level1_ParentRotationInfluence: 0
     - _Level1_RandomRotationInfluence: 9.1
@@ -130,20 +130,22 @@ Material:
     - _WindHorizontalSpeed: 0.179
     - _WindSpeed: 0.123
     m_Colors:
-    - _Color: {r: 0.22699063, g: 0.34117648, b: 0.20784314, a: 1}
+    - _Color: {r: 0.34118018, g: 0.38679248, b: 0.36931634, a: 1}
     - _ColorDim: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _EmissionColor: {r: 2.6390157, g: 2.08112, b: 0.8428269, a: 1}
+    - _EmissionColorNear: {r: 2, g: 0, b: 0, a: 1}
     - _FlatRimColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _Level1_WindShelterSettings: {r: -1, g: -0.4, b: 0, a: 0}
+    - _Level1_WindShelterSettings: {r: 1, g: -0.4, b: 0, a: 0}
     - _Level2_WindShelterSettings: {r: -1, g: -0.4, b: 0, a: 0}
     - _Level3_WindShelterSettings: {r: -1, g: -0.4, b: 0, a: 0}
     - _Level4_WindShelterSettings: {r: -1, g: -0.4, b: 0, a: 0}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
+    - _LookAt: {r: -2.1, g: 2.7, b: -62, a: 0}
     - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _WindDirectionX: {r: 0, g: 0, b: 1, a: 0}
     - _WindDirectionY: {r: 1, g: 0, b: 0, a: 0}
