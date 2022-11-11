@@ -30,6 +30,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HeatMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -74,9 +78,10 @@ Material:
     - _GradientSize: 10
     - _GustWindScale: 1
     - _GustWindspeed: 0.393
+    - _HeatMapSampleScale: 0.01
     - _HeightTransition: 0
     - _Level1_LocalWindScale: 1
-    - _Level1_MotionDampingFalloffRadius: 2.8
+    - _Level1_MotionDampingFalloffRadius: 3.36
     - _Level1_ParentRotationInfluence: 0
     - _Level1_RandomRotationInfluence: 9.1
     - _Level1_RandomRotationTextureSampleScale: 3.41
@@ -109,6 +114,7 @@ Material:
     - _LightContribution: 0
     - _LightmapDirectionPitch: 0
     - _LightmapDirectionYaw: 0
+    - _MaxSenseDistance: 8
     - _Metallic: 0
     - _MetricScale: 0.01
     - _NumLayersCount: 1
@@ -136,8 +142,11 @@ Material:
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorGradient: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _EmissionColor: {r: 3.1240594, g: 0, b: 4.229443, a: 1}
-    - _EmissionColorNear: {r: 0.14438362, g: 3.9882724, b: 5.5154557, a: 1}
+    - _Color_var: {r: 0.14778392, g: 0.254717, b: 0.24312717, a: 1}
+    - _EmissionColor: {r: 16.91777, g: 0, b: 12.178331, a: 1}
+    - _EmissionColorNear: {r: 0.14438362, g: 5.5154557, b: 4.508464, a: 1}
+    - _EmissionColorNear_var: {r: 0.14438362, g: 5.5154557, b: 3.651227, a: 1}
+    - _EmissionColor_var: {r: 16.91777, g: 0, b: 2.4011328, a: 1}
     - _FlatRimColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _Level1_WindShelterSettings: {r: 1, g: -0.4, b: 0, a: 0}
@@ -145,8 +154,9 @@ Material:
     - _Level3_WindShelterSettings: {r: -1, g: -0.4, b: 0, a: 0}
     - _Level4_WindShelterSettings: {r: -1, g: -0.4, b: 0, a: 0}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _LookAt: {r: -2.1, g: 2.7, b: -62, a: 0}
+    - _LookAt: {r: -40.5, g: 0.288, b: 110.97, a: 0}
     - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _WindDirectionX: {r: 0, g: 0, b: 1, a: 0}
     - _WindDirectionY: {r: 1, g: 0, b: 0, a: 0}
+    - _WorldToHeatMap: {r: -0.006944445, g: -0.006944445, b: -34, a: -110}
   m_BuildTextureStacks: []

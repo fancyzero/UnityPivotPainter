@@ -1,0 +1,29 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSUpdateMap
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float4> _Map;
+float4 _MapToWorldST; //xy translation, zw scale;
+float3 _TargetPos;
+float _DeltaTime;
+float _ExcitationIncreaceSpeed;
+float _ExcitationDecaySpeed;
+float _MaxSenseDistance;
+
+[numthreads(8,8,1)]
+void CSUpdateMap (uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+    float2 uv = id.xy / 1024.0;
+    uv = uv  * _MapToWorldST.zw+ _MapToWorldST.xy;
+    uv = 1-uv;
+    float3 worldPos = float3(uv.x, 0, uv.y);
+    float dist = saturate(length(worldPos-_TargetPos)/_MaxSenseDistance);
+    float e = _Map[id.xy];
+    
+    e -= float4(e*_ExcitationDecaySpeed*_DeltaTime,0,0,0);
+    e += float4(1,0,0,0)*(1-dist)*_ExcitationIncreaceSpeed*_DeltaTime;
+
+    _Map[id.xy] = saturate(e);
+}
